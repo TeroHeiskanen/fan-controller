@@ -1,0 +1,4 @@
+arduino-cli lib install PID@1.2.0
+arduino-cli lib install OneWire@2.3.5
+arduino-cli lib install DallasTemperature@3.8.0
+arduino-cli compile -b adafruit:avr:itsybitsy32u4_5V sketch
