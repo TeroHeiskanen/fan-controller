@@ -1,0 +1,11 @@
+version: "3.1"
+services:
+
+  collector:
+    build: ./
+    network_mode: host
+    privileged: true
+    volumes: 
+      - ./collector.json:/collector.json
+    restart: unless-stopped
+

@@ -1,0 +1,14 @@
+{
+    "tty": "/dev/ttyACM0",
+    "sensors": [
+        {
+            "id": "0",
+            "name": "sensor_0"
+        },
+        {
+            "id": "1",
+            "name": "sensor_1"
+        }
+    ]
+}
+
