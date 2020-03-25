@@ -14,8 +14,8 @@ logger.setLevel(logging.DEBUG)
 
 logging.basicConfig(level=logging.DEBUG)
 
-CONFIG_FILE = "logger.json"
-PATTERN = re.compile(b"(?P<name>\w+): (?P<temperature>[0-9]+\.[0-9]+)C")
+CONFIG_FILE = "collector.json"
+PATTERN = re.compile(b"(?P<name>\w+): (?P<temperature>[0-9]+\.[0-9]+)C, (?P<speed>[0-9]{1,3})%")
 READ_SIZE = 10
 RETRY_TIMEOUT = 5
 
@@ -32,6 +32,7 @@ class FanControllerCollector:
         dict = match.groupdict()
         name = dict["name"].decode()
         temperature = float(dict["temperature"])
+        speed = int(dict["speed"])
 
         sensor_name = self._sensor_names.get(name, name)
         timestamp = datetime.datetime.now().isoformat()
@@ -44,7 +45,8 @@ class FanControllerCollector:
                 },
                 "time": timestamp,
                 "fields": {
-                    "temperature": temperature
+                    "temperature": temperature,
+                    "speed": speed,
                 }
             }
         ]
