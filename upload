@@ -1,1 +1,10 @@
-arduino-cli upload -p /dev/ttyACM0 -b adafruit:avr:itsybitsy32u4_5V sketch
+ttys=( /dev/ttyACM* )
+
+if [ ${#ttys[*]} -gt "1" ]; then
+	echo Too many ttyACM*
+	exit 1
+fi
+
+echo Using ${ttys[0]}
+
+arduino-cli upload -v -p ${ttys[0]} -b adafruit:avr:itsybitsy32u4_5V sketch
